@@ -11,7 +11,8 @@ if os.path.isfile("prev_files"):
 else:
 	print "First run, No files containing list of previously existed files found!"
 	open("prev_files",'w')
-	print "Prev_files created,run script again to add data to prev_files"
+	prev_file_list = os.listdir(os.getcwd())
+	print "Prev_files created and added list of existing files"
 #add list of existing files to current_file_list
 current_file_list = os.listdir(os.getcwd())
 print "existing file list added to current_file_list" 
@@ -42,10 +43,8 @@ if current_file_list != prev_file_list:
 			flag = 1
 else:
 	print "No files added since last update"
-if flag == 0:
-		print "No tar.gz files added"
-else:
-	print "Found .log file of previously extracted tar.gz file and did nothing"
+if flag == 1:
+		print "No tar.gz or .log files found"
 #write list of existing files to file prev_files 
 with open ('prev_files','w') as f:
 	for line in current_file_list:
